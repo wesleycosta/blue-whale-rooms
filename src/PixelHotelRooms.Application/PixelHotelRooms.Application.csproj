@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\pixel-hotel-core\src\PixelHotel.Core\PixelHotel.Core.csproj" />
+    <ProjectReference Include="..\..\..\pixel-hotel-core\src\PixelHotel.Events\PixelHotel.Events.csproj" />
+    <ProjectReference Include="..\PixelHotelRooms.Domain\PixelHotelRooms.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
