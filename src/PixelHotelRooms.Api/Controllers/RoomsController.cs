@@ -7,13 +7,8 @@ namespace PixelHotelRooms.Api.Controllers;
 
 [ApiController]
 [Route("api/rooms")]
-public sealed class RoomsController : ControllerBase
+public sealed class RoomsController(IMediatorHandler _mediator) : ControllerBase
 {
-    private readonly IMediatorHandler _mediator;
-
-    public RoomsController(IMediatorHandler mediator) 
-        => _mediator = mediator;
-
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CategoryCreateCommand command)
     {
