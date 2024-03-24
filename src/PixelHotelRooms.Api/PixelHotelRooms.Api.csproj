@@ -3,7 +3,6 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<StartupObject>Program</StartupObject>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -14,7 +13,7 @@
 		<ProjectReference Include="..\..\..\pixel-hotel-core\src\PixelHotel.Api\PixelHotel.Api.csproj" />
 		<ProjectReference Include="..\..\..\pixel-hotel-core\src\PixelHotel.Core\PixelHotel.Core.csproj" />
 		<ProjectReference Include="..\PixelHotelRooms.Domain\PixelHotelRooms.Domain.csproj" />
-		<ProjectReference Include="..\PixelHotelRooms.Infra.CrossCutting.IoC\PixelHotelRooms.Infra.CrossCutting.IoC.csproj" />
+		<ProjectReference Include="..\PixelHotelRooms.Infra\PixelHotelRooms.Infra.csproj" />
 	</ItemGroup>
 
 </Project>

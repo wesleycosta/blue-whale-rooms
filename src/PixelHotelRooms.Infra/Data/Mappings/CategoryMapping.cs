@@ -1,12 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PixelHotel.Infra.Data;
 using PixelHotelRooms.Domain.Aggregates;
 
 namespace PixelHotelRooms.Infra.Data.Mappings;
 
-internal sealed class CategoryMapping : MappingBase<Category>
+internal sealed class CategoryMapping : MappingBase, IEntityTypeConfiguration<Category>
 {
-    public override void Configure(EntityTypeBuilder<Category> builder)
+    public void Configure(EntityTypeBuilder<Category> builder)
     {
         builder.HasKey(p => p.Id);
 

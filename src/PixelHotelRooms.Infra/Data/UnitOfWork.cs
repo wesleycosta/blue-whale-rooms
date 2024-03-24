@@ -1,12 +1,22 @@
 ﻿using PixelHotel.Core.Abstractions;
+using PixelHotel.Core.Events.Abstractions;
 
 namespace PixelHotelRooms.Infra.Data;
 
-public sealed class UnitOfWork(RoomsContext _context) : IUnitOfWork
+public sealed class UnitOfWork : IUnitOfWork
 {
-    public async Task<bool> Commit()
-        => await SaveChanges() > 0;
+    private readonly RoomsContext _context;
+    private readonly IPublisherEvent _publisherEvent;
 
-    public async Task<int> SaveChanges()
-        => await _context.SaveChangesAsync();
+    public UnitOfWork(RoomsContext dbContext,
+        IPublisherEvent publisherEvent)
+    {
+        _context = dbContext;
+        _publisherEvent = publisherEvent;
+    }
+
+    public async Task<bool> Commit()
+    {
+        return await _context.Commit();
+    }
 }
