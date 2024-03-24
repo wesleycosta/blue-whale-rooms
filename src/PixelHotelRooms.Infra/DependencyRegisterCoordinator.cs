@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PixelHotel.Core.Abstractions;
 using PixelHotelRooms.Infra.Data;
 
 namespace PixelHotelRooms.Infra;
@@ -25,9 +24,6 @@ public static class DependencyRegisterCoordinator
             options.UseSqlServer(connectionString);
             options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         });
-
-        services.AddScoped<IUnitOfWork>
-
 
         return services;
     }

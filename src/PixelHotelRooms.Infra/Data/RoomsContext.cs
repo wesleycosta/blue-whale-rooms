@@ -9,13 +9,12 @@ public class RoomsContext : DbContext, IUnitOfWork
 {
     public RoomsContext(DbContextOptions<RoomsContext> options) : base(options)
     {
-
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ConfigureDefault();
-        modelBuilder.Entity<Category>().HasQueryFilter(p => p.Removed);
+        modelBuilder.Entity<Category>().HasQueryFilter(p => !p.Removed);
     }
 
     public async Task<bool> Commit()
