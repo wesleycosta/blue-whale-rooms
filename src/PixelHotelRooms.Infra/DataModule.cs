@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using PixelHotel.Core.Abstractions;
 using PixelHotel.Infra.Abstractions;
-using PixelHotelRooms.Domain.Repositories;
+using PixelHotelRooms.Domain.CategoryAggregate;
 using PixelHotelRooms.Infra.Data;
 using PixelHotelRooms.Infra.Data.Repositories;
 using PixelHotelRooms.Infra.Extensions;

@@ -3,8 +3,8 @@ using PixelHotel.Core.Abstractions;
 using PixelHotel.Core.Services;
 using PixelHotelRooms.Application.Abstractions;
 using PixelHotelRooms.Domain.Aggregates;
-using PixelHotelRooms.Domain.Commands;
-using PixelHotelRooms.Domain.Repositories;
+using PixelHotelRooms.Domain.CategoryAggregate;
+using PixelHotelRooms.Domain.CategoryAggregate.Commands;
 
 namespace PixelHotelRooms.Application.Handlers;
 

@@ -1,6 +1,5 @@
 ﻿using PixelHotel.Infra.Data;
-using PixelHotelRooms.Domain.Aggregates;
-using PixelHotelRooms.Domain.Repositories;
+using PixelHotelRooms.Domain.CategoryAggregate;
 
 namespace PixelHotelRooms.Infra.Data.Repositories;
 

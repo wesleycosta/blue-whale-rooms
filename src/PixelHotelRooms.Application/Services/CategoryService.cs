@@ -1,8 +1,7 @@
 ﻿using PixelHotel.Core.Services;
 using PixelHotelRooms.Application.Abstractions;
 using PixelHotelRooms.Application.Responses;
-using PixelHotelRooms.Domain.Aggregates;
-using PixelHotelRooms.Domain.Repositories;
+using PixelHotelRooms.Domain.CategoryAggregate;
 
 namespace PixelHotelRooms.Application.Services;
 

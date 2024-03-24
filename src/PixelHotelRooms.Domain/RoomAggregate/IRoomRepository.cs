@@ -1,7 +1,6 @@
 ﻿using PixelHotel.Core.Abstractions;
-using PixelHotelRooms.Domain.Aggregates;
 
-namespace PixelHotelRooms.Domain.Repositories;
+namespace PixelHotelRooms.Domain.RoomAggregate;
 
 public interface IRoomRepository : IRepositoryBase<Room>
 {

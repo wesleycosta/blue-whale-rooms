@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PixelHotel.Core.Abstractions;
 using PixelHotel.Infra.Configurations;
-using PixelHotelRooms.Domain.Aggregates;
+using PixelHotelRooms.Domain.CategoryAggregate;
 
 namespace PixelHotelRooms.Infra.Data;
 

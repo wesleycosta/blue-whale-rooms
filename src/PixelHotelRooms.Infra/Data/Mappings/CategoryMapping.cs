@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PixelHotel.Infra.Data;
-using PixelHotelRooms.Domain.Aggregates;
+using PixelHotelRooms.Domain.CategoryAggregate;
 
 namespace PixelHotelRooms.Infra.Data.Mappings;
 

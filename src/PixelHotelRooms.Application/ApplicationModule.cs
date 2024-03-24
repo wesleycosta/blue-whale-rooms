@@ -5,7 +5,7 @@ using PixelHotelRooms.Application.Abstractions;
 using PixelHotelRooms.Application.Handlers;
 using PixelHotelRooms.Application.Mappers;
 using PixelHotelRooms.Application.Services;
-using PixelHotelRooms.Domain.Commands;
+using PixelHotelRooms.Domain.CategoryAggregate.Commands;
 
 namespace PixelHotelRooms.Application;
 

@@ -1,5 +1,5 @@
 ﻿using PixelHotelRooms.Application.Abstractions;
-using PixelHotelRooms.Domain.Aggregates;
+using PixelHotelRooms.Domain.CategoryAggregate;
 using PixelHotelRooms.Infra.Data;
 using System.Collections.Generic;
 using System.Reflection;

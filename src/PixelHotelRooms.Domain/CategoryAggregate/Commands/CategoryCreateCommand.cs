@@ -1,6 +1,6 @@
 ﻿using PixelHotel.Core.Domain;
 
-namespace PixelHotelRooms.Domain.Commands;
+namespace PixelHotelRooms.Domain.CategoryAggregate.Commands;
 
 public sealed class CategoryCreateCommand : CommandBase
 {

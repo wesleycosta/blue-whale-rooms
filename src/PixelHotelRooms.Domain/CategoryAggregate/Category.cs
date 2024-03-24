@@ -1,9 +1,9 @@
 ﻿using PixelHotel.Core.Abstractions;
 using PixelHotel.Core.Domain;
 using PixelHotel.Events.Rooms.Category;
-using PixelHotelRooms.Domain.Commands;
+using PixelHotelRooms.Domain.CategoryAggregate.Commands;
 
-namespace PixelHotelRooms.Domain.Aggregates;
+namespace PixelHotelRooms.Domain.CategoryAggregate;
 
 public sealed class Category : EntityBase,
     IUpdateFrom<CategoryCreateCommand>,

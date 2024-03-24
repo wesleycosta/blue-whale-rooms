@@ -1,6 +1,6 @@
 ﻿using PixelHotelRooms.Application.Abstractions;
 using PixelHotelRooms.Application.Responses;
-using PixelHotelRooms.Domain.Aggregates;
+using PixelHotelRooms.Domain.CategoryAggregate;
 
 namespace PixelHotelRooms.Application.Mappers;
 

@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 using PixelHotel.Core.Domain.Validations;
-using PixelHotelRooms.Domain.Commands;
+using PixelHotelRooms.Domain.CategoryAggregate.Commands;
 
-namespace PixelHotelRooms.Domain.Validations;
+namespace PixelHotelRooms.Domain.CategoryAggregate.Validations;
 
 public sealed class CategoryCreateCommandValidator : ValidatorBase<CategoryCreateCommand>
 {

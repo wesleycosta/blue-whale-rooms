@@ -1,7 +1,8 @@
 ﻿using PixelHotel.Core.Abstractions;
 using PixelHotel.Core.Domain;
+using PixelHotelRooms.Domain.CategoryAggregate;
 
-namespace PixelHotelRooms.Domain.Aggregates;
+namespace PixelHotelRooms.Domain.RoomAggregate;
 
 public sealed class Room : EntityBase, IAggregateRoot
 {
