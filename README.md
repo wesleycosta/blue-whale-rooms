@@ -6,4 +6,5 @@ A microservice responsible for providing information about the available rooms a
 
 ## Solution (WIP)
 
-![image](https://github.com/wesleycosta/pixel-hotel-rooms/assets/3426975/28a73d06-981a-4411-b7f5-d6ff8147aa24)
+![image](https://github.com/wesleycosta/pixel-hotel-rooms/assets/3426975/27b83218-2362-4807-9f2a-e962e5c73eed)
+
