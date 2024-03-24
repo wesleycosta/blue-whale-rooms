@@ -29,18 +29,11 @@ internal sealed class CategoryCreateCommandHandler : CommandHandlerBase<Category
             return BadResult();
         }
 
-        var category = CreateInstanceOfCategoryByCommand(request);
+        var category = new Category();
+        category.UpdateFrom(request);
         var response = _mapper.MapToCategoryResponse(category);
         _repository.Add(category);
 
         return await SaveChanges(response);
-    }
-
-    private static Category CreateInstanceOfCategoryByCommand(CategoryCreateCommand request)
-    {
-        var category = new Category();
-        category.UpdateFrom(request);
-
-        return category;
     }
 }

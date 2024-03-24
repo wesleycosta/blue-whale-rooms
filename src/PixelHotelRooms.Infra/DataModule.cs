@@ -1,15 +1,19 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using PixelHotel.Core.Abstractions;
+using PixelHotel.Infra.Abstractions;
 using PixelHotelRooms.Domain.Repositories;
 using PixelHotelRooms.Infra.Data;
 using PixelHotelRooms.Infra.Data.Repositories;
+using PixelHotelRooms.Infra.Extensions;
 
 namespace PixelHotelRooms.Infra;
 
-public class DataModule : IModuleRegister
+public class DataModule : IModuleRegiterWithConfiguration
 {
-    public IServiceCollection RegisterServices(IServiceCollection services)
+    public IServiceCollection RegisterServices(IServiceCollection services, IConfiguration configuration)
     {
+        services.AddContext(configuration);
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
