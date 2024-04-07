@@ -1,4 +1,5 @@
 ﻿using PixelHotel.Core.Abstractions;
+using PixelHotel.Core.Events;
 using PixelHotel.Core.Events.Abstractions;
 using PixelHotel.Infra.Configurations;
 
@@ -27,3 +28,13 @@ public sealed class UnitOfWork : IUnitOfWork
         return committeeSuccessfullyCompleted;
     }
 }
+
+public class PublisherEvent : IPublisherEvent
+{
+    public async Task Publish<TEvent>(TEvent @event) where TEvent : Event
+    {
+        // TODO: arrumar
+        await Task.CompletedTask;
+    }
+}
+

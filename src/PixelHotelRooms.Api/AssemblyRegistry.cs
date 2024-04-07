@@ -1,6 +1,6 @@
-﻿using PixelHotelRooms.Application.Abstractions;
-using PixelHotelRooms.Domain.CategoryAggregate;
-using PixelHotelRooms.Infra.Data;
+﻿using PixelHotelRooms.Application;
+using PixelHotelRooms.Domain;
+using PixelHotelRooms.Infra;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -10,8 +10,8 @@ public static class AssemblyRegistry
 {
     public static IEnumerable<Assembly> GetAssemblies()
     {
-        yield return typeof(ICategoryService).Assembly;
-        yield return typeof(Category).Assembly;
-        yield return typeof(RoomsContext).Assembly;
+        yield return typeof(ApplicationModule).Assembly;
+        yield return typeof(DomainModule).Assembly;
+        yield return typeof(InfraModule).Assembly;
     }
 }

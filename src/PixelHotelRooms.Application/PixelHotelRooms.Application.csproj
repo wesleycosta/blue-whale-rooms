@@ -1,14 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\pixel-hotel-core\src\PixelHotel.Core\PixelHotel.Core.csproj" />
-    <ProjectReference Include="..\..\..\pixel-hotel-core\src\PixelHotel.Events\PixelHotel.Events.csproj" />
-    <ProjectReference Include="..\PixelHotelRooms.Domain\PixelHotelRooms.Domain.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="MassTransit" Version="8.2.0" />
+		<PackageReference Include="MassTransit.Abstractions" Version="8.2.0" />
+		<PackageReference Include="MassTransit.RabbitMQ" Version="8.2.0" />
+		<PackageReference Include="MediatR" Version="11.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\pixel-hotel-core\src\PixelHotel.Core\PixelHotel.Core.csproj" />
+		<ProjectReference Include="..\..\..\pixel-hotel-core\src\PixelHotel.Events\PixelHotel.Events.csproj" />
+		<ProjectReference Include="..\PixelHotelRooms.Domain\PixelHotelRooms.Domain.csproj" />
+	</ItemGroup>
 
 </Project>

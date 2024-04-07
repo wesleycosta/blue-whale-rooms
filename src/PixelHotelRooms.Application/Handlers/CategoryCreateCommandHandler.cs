@@ -2,7 +2,6 @@
 using PixelHotel.Core.Abstractions;
 using PixelHotel.Core.Services;
 using PixelHotelRooms.Application.Abstractions;
-using PixelHotelRooms.Domain.Aggregates;
 using PixelHotelRooms.Domain.CategoryAggregate;
 using PixelHotelRooms.Domain.CategoryAggregate.Commands;
 
