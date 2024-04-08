@@ -25,37 +25,29 @@ public class ApplicationModule : IModuleRegister
         return services;
     }
 
-    internal class RegistrationConsumers : IRegistrationConsumers
+    internal class RegistrationConsumers : IConsumerRegistration
     {
         public void Register(IBusRegistrationConfigurator busRegistrationConfigurator)
         {
             busRegistrationConfigurator.AddConsumer<RoomCreatedUpdatedConsumer>();
             busRegistrationConfigurator.AddConsumer<RoomRemovedEventConsumer>();
-            busRegistrationConfigurator.AddConsumer<ReservationsConsumer2>();
         }
 
-        public void Register(IServiceCollection services, IRabbitMqBusFactoryConfigurator config, IRegistrationContext context)
+        public void ConfigureEndpoint(IServiceCollection services, IRabbitMqBusFactoryConfigurator config, IRegistrationContext context)
         {
-            config.Publish<RoomCreatedUpdatedConsumer>(x =>
+            config.Publish<RoomCreatedUpdatedConsumer>(p =>
             {
-                x.Durable = true;
-                x.BindQueue(x.Exchange.ExchangeName, "room-queue");
-                x.BindQueue(x.Exchange.ExchangeName, "reservations-queue");
+                p.ExchangeType = "topic";
+                p.BindQueue(p.Exchange.ExchangeName, "room-queue");
             });
 
-            config.ReceiveEndpoint("room-queue", e =>
-            {
-                e.ConfigureConsumer<RoomCreatedUpdatedConsumer>(context);
-                e.ConfigureConsumer<RoomRemovedEventConsumer>(context);
-                e.Bind<RoomCreatedOrUpdatedEvent>();
-                e.Bind<RoomRemovedEvent>();
-            });
-
-            config.ReceiveEndpoint("reservations-queue", e =>
-            {
-                e.ConfigureConsumer<ReservationsConsumer2>(context);
-                e.Bind<RoomCreatedOrUpdatedEvent>();
-            });
+            //config.ReceiveEndpoint("room-queue", e =>
+            //{
+            //    e.ConfigureConsumer<RoomCreatedUpdatedConsumer>(context);
+            //    e.ConfigureConsumer<RoomRemovedEventConsumer>(context);
+            //    e.Bind<RoomCreatedOrUpdatedEvent>();
+            //    e.Bind<RoomRemovedEvent>();
+            //});
         }
     }
 }
