@@ -3,12 +3,12 @@
   "profiles": {
     "PixelHotelRooms.Api": {
       "commandName": "Project",
-      "launchBrowser": false,
+      "launchBrowser": true,
       "launchUrl": "api-docs",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:6001",
+      "applicationUrl": "http://localhost:8081",
       "dotnetRunMessages": true
     }
   }

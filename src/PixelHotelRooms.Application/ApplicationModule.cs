@@ -1,6 +1,7 @@
 ﻿using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using PixelHotel.Core.Abstractions;
+using PixelHotel.Core.Events;
 using PixelHotel.Core.Events.Abstractions;
 using PixelHotel.Core.Extensions;
 using PixelHotel.Events.Rooms;
@@ -25,29 +26,25 @@ public class ApplicationModule : IModuleRegister
         return services;
     }
 
-    internal class RegistrationConsumers : IConsumerRegistration
+    internal class RegistrationConsumers : IBusConfiguration
     {
-        public void Register(IBusRegistrationConfigurator busRegistrationConfigurator)
-        {
-            busRegistrationConfigurator.AddConsumer<RoomCreatedUpdatedConsumer>();
-            busRegistrationConfigurator.AddConsumer<RoomRemovedEventConsumer>();
-        }
-
-        public void ConfigureEndpoint(IServiceCollection services, IRabbitMqBusFactoryConfigurator config, IRegistrationContext context)
-        {
-            config.Publish<RoomCreatedUpdatedConsumer>(p =>
+        public BusConfiguration GetConfiguration()
+            => new()
             {
-                p.ExchangeType = "topic";
-                p.BindQueue(p.Exchange.ExchangeName, "room-queue");
-            });
-
-            //config.ReceiveEndpoint("room-queue", e =>
-            //{
-            //    e.ConfigureConsumer<RoomCreatedUpdatedConsumer>(context);
-            //    e.ConfigureConsumer<RoomRemovedEventConsumer>(context);
-            //    e.Bind<RoomCreatedOrUpdatedEvent>();
-            //    e.Bind<RoomRemovedEvent>();
-            //});
-        }
+                Publishes =
+                [
+                   new PublishConfiguration
+                   {
+                       ExchangeName = "pixel-hotel-rooms-exchange",
+                       Configs = [
+                           new PublishEventConfig
+                           {
+                               EventType = typeof(RoomCreatedOrUpdatedEvent),
+                               Queue = "pixel-hotel-rooms-events-to-reservations"
+                           }
+                    ]
+                   }
+               ]
+            };
     }
 }
