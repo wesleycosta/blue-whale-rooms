@@ -5,5 +5,5 @@ namespace PixelHotelRooms.Application.Abstractions;
 
 public interface ICategoryMapper
 {
-    CategoryResponse MapToCategoryResponse(Category category);
+    CategoryResult MapToCategoryResult(Category category);
 }

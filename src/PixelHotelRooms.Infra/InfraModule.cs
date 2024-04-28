@@ -17,7 +17,7 @@ public class InfraModule : IModuleRegiterWithConfiguration
         services.AddContext(configuration);
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddSingleton<IPublisherEvent, PublisherEvent>(); // TODO: arrumar
+        services.AddSingleton<IPublisherEvent, PublisherEvent>();
 
         return services;
     }

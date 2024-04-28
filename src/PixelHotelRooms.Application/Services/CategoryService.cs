@@ -28,7 +28,7 @@ internal sealed class CategoryService : QueryServiceBase, ICategoryService
         return SuccessfulResult(categoryResponse);
     }
 
-    private async Task<CategoryResponse> GetCategoryResponseById(Guid id)
+    private async Task<CategoryResult> GetCategoryResponseById(Guid id)
         => await _categoryRepository.GetFirstByExpression(category => category.Id == id,
-            p => _categoryMapper.MapToCategoryResponse(p));
+            p => _categoryMapper.MapToCategoryResult(p));
 }

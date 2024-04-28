@@ -11,28 +11,36 @@ internal sealed class CategoryCreateCommandHandler : CommandHandlerBase<Category
 {
     private readonly ICategoryMapper _mapper;
     private readonly ICategoryRepository _repository;
+    private readonly ICategoryPublisher _publisher;
 
     public CategoryCreateCommandHandler(IUnitOfWork unitOfWork,
         IValidator<CategoryCreateCommand> validator,
         ICategoryMapper mapper,
-        ICategoryRepository repository) : base(unitOfWork, validator)
+        ICategoryRepository repository,
+        ICategoryPublisher publisher) : base(unitOfWork, validator)
     {
         _mapper = mapper;
         _repository = repository;
+        _publisher = publisher;
     }
 
-    public override async Task<Result> Handle(CategoryCreateCommand request, CancellationToken cancellationToken)
+    public override async Task<Result> Handle(CategoryCreateCommand command, CancellationToken cancellationToken)
     {
-        if (!await Validate(request))
+        if (!await Validate(command))
         {
             return BadResult();
         }
 
         var category = new Category();
-        category.UpdateFrom(request);
-        var response = _mapper.MapToCategoryResponse(category);
+        var events = category.UpdateFrom(command);
         _repository.Add(category);
 
-        return await SaveChanges(response);
+        if (await Commit())
+        {
+            await _publisher.PublishCreatedUpdatedEvent(events);
+            return SuccessfulResult(_mapper.MapToCategoryResult(category));
+        }
+
+        return BadResult();
     }
 }

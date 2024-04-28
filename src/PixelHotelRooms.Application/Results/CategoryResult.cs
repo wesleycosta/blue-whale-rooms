@@ -2,7 +2,7 @@
 
 namespace PixelHotelRooms.Application.Responses;
 
-public class CategoryResponse : ResponseBase
+public class CategoryResult : ResponseBase
 {
     public string Name { get; set; }
 }

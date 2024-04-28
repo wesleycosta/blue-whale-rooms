@@ -6,37 +6,35 @@ using PixelHotelRooms.Domain.CategoryAggregate.Commands;
 namespace PixelHotelRooms.Domain.CategoryAggregate;
 
 public sealed class Category : EntityBase,
-    IUpdateFrom<CategoryCreateCommand>,
-    IUpdateFrom<CategoryUpdateCommand>,
-    IUpdateFrom<CategoryRemoveCommand>
+    IUpdateFrom<CategoryCreateCommand, CategoryCreatedUpdatedEvent>,
+    IUpdateFrom<CategoryUpdateCommand, CategoryCreatedUpdatedEvent>,
+    IUpdateFrom<CategoryRemoveCommand, CategoryRemovedEvent>
 {
     public string Name { get; private set; }
 
-    public void UpdateFrom(CategoryCreateCommand command)
+    public IEnumerable<CategoryCreatedUpdatedEvent> UpdateFrom(CategoryCreateCommand command)
     {
         Name = command.Name;
-
         GenerateId();
-        AddCreatedUpdatedEvent();
+
+        yield return InstanceOfCreatedUpdatedEvent();
     }
 
-    public void UpdateFrom(CategoryUpdateCommand command)
+    public IEnumerable<CategoryCreatedUpdatedEvent> UpdateFrom(CategoryUpdateCommand command)
     {
         Id = command.Id;
         Name = command.Name;
 
-        AddCreatedUpdatedEvent();
+        yield return InstanceOfCreatedUpdatedEvent();
     }
 
-    public void UpdateFrom(CategoryRemoveCommand command)
+    public IEnumerable<CategoryRemovedEvent> UpdateFrom(CategoryRemoveCommand command)
     {
         Id = command.Id;
-        RemoveAndAddEvent<CategoryRemovedEvent>();
+        
+        yield return new CategoryRemovedEvent(Id);
     }
 
-    private void AddCreatedUpdatedEvent()
-    {
-        var createdUpdatedEvent = new CategoryCreatedUpdatedEvent(Id, Name);
-        AddEvent(createdUpdatedEvent);
-    }
+    private CategoryCreatedUpdatedEvent InstanceOfCreatedUpdatedEvent()
+        => new(Id, Name);
 }

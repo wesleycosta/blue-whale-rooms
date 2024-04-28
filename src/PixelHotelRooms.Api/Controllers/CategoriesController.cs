@@ -1,8 +1,6 @@
-using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using PixelHotel.Api;
 using PixelHotel.Core.Events.Abstractions;
-using PixelHotel.Events.Rooms;
 using PixelHotelRooms.Application.Abstractions;
 using PixelHotelRooms.Domain.CategoryAggregate.Commands;
 using System;
@@ -12,19 +10,8 @@ namespace PixelHotelRooms.Api.Controllers;
 
 [Route("api/categories")]
 public sealed class CategoriesController(IMediatorHandler _mediator,
-    ICategoryService _categoryService,
-    IBus bus) : MainController
+    ICategoryService _categoryService) : MainController
 {
-
-    [HttpPost("teste")]
-    public async Task<IActionResult> Teste()
-    {
-        await bus.Publish(new RoomCreatedOrUpdatedEvent(Guid.NewGuid(), "teste", 123));
-        await bus.Publish(new RoomRemovedEvent());
-
-        return Ok();
-    }
-
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CategoryCreateCommand command)
     {

@@ -6,7 +6,7 @@ namespace PixelHotelRooms.Application.Mappers;
 
 internal sealed class CategoryMapper : ICategoryMapper
 {
-    public CategoryResponse MapToCategoryResponse(Category category)
+    public CategoryResult MapToCategoryResult(Category category)
         => new()
         {
             Id = category.Id,
