@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using PixelHotel.Core.Abstractions;
 using PixelHotel.Core.Extensions;
-using PixelHotel.Events.Rooms;
+using PixelHotel.Events.Rooms.Category;
 using PixelHotelRooms.Application.Abstractions;
 using PixelHotelRooms.Application.Consumers;
 using PixelHotelRooms.Application.Handlers;
@@ -20,7 +20,7 @@ public partial class ApplicationModule : IModuleRegister
         services.AddScoped<ICategoryPublisher, CategoryPublisher>();
         services.AddScoped<ICategoryMapper, CategoryMapper>();
         services.AddCommandHandler<CategoryCreateCommand, CategoryCreateCommandHandler>();
-        services.AddScoped<IConsumer<RoomCreatedOrUpdatedEvent>, RoomCreatedUpdatedConsumer>();
+        services.AddScoped<IConsumer<CategoryCreatedUpdatedEvent>, CategoryCreatedUpdatedConsumer>();
 
         return services;
     }

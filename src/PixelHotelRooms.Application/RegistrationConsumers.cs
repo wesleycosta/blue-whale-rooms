@@ -1,6 +1,6 @@
 ﻿using PixelHotel.Core.Bus;
 using PixelHotel.Core.Bus.Abstractions;
-using PixelHotel.Events.Rooms;
+using PixelHotel.Events.Rooms.Category;
 using PixelHotelRooms.Application.Consumers;
 
 namespace PixelHotelRooms.Application;
@@ -19,7 +19,7 @@ public class RegistrationConsumers : IBusConfiguration
                        [
                            new PublishEventConfig
                            {
-                                   EventType = typeof(RoomCreatedOrUpdatedEvent),
+                                   EventType = typeof(CategoryCreatedUpdatedEvent),
                                    QueueName = "pixel-hotel-rooms-events-to-reservations"
                            }
                        ]
@@ -31,7 +31,7 @@ public class RegistrationConsumers : IBusConfiguration
                     ExchangeName = "pixel-hotel-rooms-events-to-reservations",
                     QueueName = "pixel-hotel-rooms-events-to-reservations",
                     Consumers = [
-                        typeof(RoomCreatedUpdatedConsumer)
+                        typeof(CategoryCreatedUpdatedConsumer)
                     ]
                 }
             ]
