@@ -5,8 +5,6 @@ VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9AA994E2-E838-41E0-81A1-FE139C275788}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FBE6E9CD-323A-4AF0-A0D8-ED26F5BCD449}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PixelHotelRooms.Api", "src\PixelHotelRooms.Api\PixelHotelRooms.Api.csproj", "{9F8E50CD-A1E8-4760-84D2-80EAFCEBFF6D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PixelHotelRooms.Application", "src\PixelHotelRooms.Application\PixelHotelRooms.Application.csproj", "{45A0F6FD-E51A-4765-80B5-2F82EFA1800E}"
@@ -24,6 +22,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PixelHotel.Events", "..\pixel-hotel-core\src\PixelHotel.Events\PixelHotel.Events.csproj", "{49A8C3B5-1B7D-4D32-8AC3-013BFE9274CA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PixelHotel.Infra", "..\pixel-hotel-core\src\PixelHotel.Infra\PixelHotel.Infra.csproj", "{707E174D-AF56-4F2A-AAF9-F3DFEB8E6C52}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9425ADAD-62D0-4E60-95D2-48D13E446E06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

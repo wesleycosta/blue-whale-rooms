@@ -1,5 +1,5 @@
 ﻿using MassTransit;
-using PixelHotel.Core.Events.Abstractions;
+using PixelHotel.Core.Bus.Abstractions;
 using EventBase = PixelHotel.Core.Events.Event;
 
 namespace PixelHotelRooms.Infra.Data;

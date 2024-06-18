@@ -1,6 +1,6 @@
 ﻿using MassTransit;
 using PixelHotel.Core.Abstractions;
-using PixelHotel.Core.Events;
+using PixelHotel.Core.Bus;
 using PixelHotel.Events.Rooms;
 
 namespace PixelHotelRooms.Application.Consumers;

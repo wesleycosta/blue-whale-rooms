@@ -1,30 +1,39 @@
-﻿using PixelHotel.Core.Events;
-using PixelHotel.Core.Events.Abstractions;
+﻿using PixelHotel.Core.Bus;
+using PixelHotel.Core.Bus.Abstractions;
 using PixelHotel.Events.Rooms;
+using PixelHotelRooms.Application.Consumers;
 
 namespace PixelHotelRooms.Application;
 
-public partial class ApplicationModule
+public class RegistrationConsumers : IBusConfiguration
 {
-    internal class RegistrationConsumers : IBusConfiguration
-    {
-        public BusConfiguration GetConfiguration()
-            => new()
-            {
-                Publishes =
+    public BusConfiguration GetConfiguration()
+        => new()
+        {
+            Publishes =
                 [
                    new PublishConfiguration
                    {
-                       ExchangeName = "pixel-hotel-rooms-exchange",
-                       Configs = [
+                       ExchangeName = "pixel-hotel-rooms-events-to-reservations",
+                       Configs =
+                       [
                            new PublishEventConfig
                            {
-                               EventType = typeof(RoomCreatedOrUpdatedEvent),
-                               Queue = "pixel-hotel-rooms-events-to-reservations"
+                                   EventType = typeof(RoomCreatedOrUpdatedEvent),
+                                   QueueName = "pixel-hotel-rooms-events-to-reservations"
                            }
                        ]
                    }
-               ]
-            };
-    }
+               ],
+            Receives = [
+                new ReceiveConfiguration
+                {
+                    ExchangeName = "pixel-hotel-rooms-events-to-reservations",
+                    QueueName = "pixel-hotel-rooms-events-to-reservations",
+                    Consumers = [
+                        typeof(RoomCreatedUpdatedConsumer)
+                    ]
+                }
+            ]
+        };
 }

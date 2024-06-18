@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PixelHotel.Api;
-using PixelHotel.Core.Events.Abstractions;
+using PixelHotel.Core.Bus.Abstractions;
 using PixelHotelRooms.Application.Abstractions;
 using PixelHotelRooms.Domain.CategoryAggregate.Commands;
 using System;
