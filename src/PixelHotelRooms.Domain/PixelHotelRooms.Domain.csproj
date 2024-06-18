@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\pixel-hotel-core\src\PixelHotel.Core\PixelHotel.Core.csproj" />
-    <ProjectReference Include="..\..\..\pixel-hotel-core\src\PixelHotel.Events\PixelHotel.Events.csproj" />
+    <PackageReference Include="PixelHotel.Core" Version="1.0.0" />
+    <PackageReference Include="PixelHotel.Events" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

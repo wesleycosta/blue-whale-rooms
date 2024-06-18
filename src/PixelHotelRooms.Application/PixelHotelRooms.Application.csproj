@@ -13,8 +13,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\pixel-hotel-core\src\PixelHotel.Core\PixelHotel.Core.csproj" />
-		<ProjectReference Include="..\..\..\pixel-hotel-core\src\PixelHotel.Events\PixelHotel.Events.csproj" />
 		<ProjectReference Include="..\PixelHotelRooms.Domain\PixelHotelRooms.Domain.csproj" />
 	</ItemGroup>
 

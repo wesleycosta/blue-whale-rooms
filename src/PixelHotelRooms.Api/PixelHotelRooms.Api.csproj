@@ -6,12 +6,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="PixelHotel.Api" Version="1.0.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\pixel-hotel-core\src\PixelHotel.Api\PixelHotel.Api.csproj" />
-		<ProjectReference Include="..\..\..\pixel-hotel-core\src\PixelHotel.Core\PixelHotel.Core.csproj" />
 		<ProjectReference Include="..\PixelHotelRooms.Application\PixelHotelRooms.Application.csproj" />
 		<ProjectReference Include="..\PixelHotelRooms.Domain\PixelHotelRooms.Domain.csproj" />
 		<ProjectReference Include="..\PixelHotelRooms.Infra\PixelHotelRooms.Infra.csproj" />
