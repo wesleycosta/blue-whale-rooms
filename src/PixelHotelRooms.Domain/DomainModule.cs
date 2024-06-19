@@ -11,6 +11,7 @@ public class DomainModule : IModuleRegister
     public IServiceCollection RegisterServices(IServiceCollection services)
     {
         services.AddValidator<CategoryCreateCommand, CategoryCreateCommandValidator>();
+        services.AddValidator<CategoryUpdateCommand, CategoryUpdateCommandValidator>();
 
         return services;
     }

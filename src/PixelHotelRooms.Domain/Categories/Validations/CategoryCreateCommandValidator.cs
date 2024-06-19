@@ -1,20 +1,10 @@
-﻿using FluentValidation;
-using PixelHotel.Core.Domain.Validations;
-using PixelHotelRooms.Domain.CategoryAggregate.Commands;
+﻿using PixelHotelRooms.Domain.CategoryAggregate.Commands;
 
 namespace PixelHotelRooms.Domain.CategoryAggregate.Validations;
 
-public sealed class CategoryCreateCommandValidator : ValidatorBase<CategoryCreateCommand>
+public sealed class CategoryCreateCommandValidator : CategoryCommandValidatorBase<CategoryCreateCommand>
 {
-    public CategoryCreateCommandValidator()
+    public CategoryCreateCommandValidator(ICategoryRepository categoryRepository) : base(categoryRepository)
     {
-        RuleFor(command => command.Name)
-           .NotNull()
-           .NotEmpty()
-           .WithMessage(ValidatorMessages.NotInformed(nameof(CategoryCreateCommand.Name)));
-
-        RuleFor(command => command.Name)
-           .MaximumLength(MAX_LENGTH_STRING)
-           .WithMessage(ValidatorMessages.LessThanString(nameof(CategoryCreateCommand.Name)));
     }
 }

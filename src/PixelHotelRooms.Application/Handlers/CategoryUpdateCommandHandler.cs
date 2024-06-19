@@ -8,14 +8,14 @@ using PixelHotelRooms.Domain.CategoryAggregate.Commands;
 
 namespace PixelHotelRooms.Application.Handlers;
 
-internal sealed class CategoryCreateCommandHandler : CommandHandlerBase<CategoryCreateCommand>
+internal sealed class CategoryUpdateCommandHandler : CommandHandlerBase<CategoryUpdateCommand>
 {
     private readonly ICategoryMapper _mapper;
     private readonly ICategoryRepository _repository;
     private readonly ICategoryPublisher _publisher;
 
-    public CategoryCreateCommandHandler(IUnitOfWork unitOfWork,
-        IValidator<CategoryCreateCommand> validator,
+    public CategoryUpdateCommandHandler(IUnitOfWork unitOfWork,
+        IValidator<CategoryUpdateCommand> validator,
         ICategoryMapper mapper,
         ICategoryRepository repository,
         ICategoryPublisher publisher) : base(unitOfWork, validator)
@@ -25,15 +25,16 @@ internal sealed class CategoryCreateCommandHandler : CommandHandlerBase<Category
         _publisher = publisher;
     }
 
-    public override async Task<Result> Handle(CategoryCreateCommand command, CancellationToken cancellationToken)
+    public override async Task<Result> Handle(CategoryUpdateCommand command, CancellationToken cancellationToken)
     {
         if (!await Validate(command))
         {
             return BadResult();
         }
 
-        var category = new Category(command.Name);
-        _repository.Add(category);
+        var category = await _repository.GetById(command.Id);
+        category.SetName(command.Name);
+        _repository.Update(category);
 
         if (await Commit())
         {

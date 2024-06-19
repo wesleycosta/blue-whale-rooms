@@ -18,5 +18,5 @@ public class RoomsContext : DbContext, IUnitOfWork
     }
 
     public async Task<bool> Commit()
-       => await SaveChangesAsync() > 0;
+        => await SaveChangesAsync() > 0;
 }

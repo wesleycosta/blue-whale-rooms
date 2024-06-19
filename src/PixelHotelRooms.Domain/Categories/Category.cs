@@ -1,40 +1,17 @@
-﻿using PixelHotel.Core.Abstractions;
-using PixelHotel.Core.Domain;
-using PixelHotel.Events.Rooms.Category;
-using PixelHotelRooms.Domain.CategoryAggregate.Commands;
+﻿using PixelHotel.Core.Domain;
 
 namespace PixelHotelRooms.Domain.CategoryAggregate;
 
-public sealed class Category : EntityBase,
-    IUpdateFrom<CategoryCreateCommand, CategoryCreatedUpdatedEvent>,
-    IUpdateFrom<CategoryUpdateCommand, CategoryCreatedUpdatedEvent>,
-    IUpdateFrom<CategoryRemoveCommand, CategoryRemovedEvent>
+public sealed class Category : EntityBase
 {
     public string Name { get; private set; }
 
-    public IEnumerable<CategoryCreatedUpdatedEvent> UpdateFrom(CategoryCreateCommand command)
+    public Category(string name)
     {
-        Name = command.Name;
         GenerateId();
-
-        yield return InstanceOfCreatedUpdatedEvent();
+        Name = name;
     }
 
-    public IEnumerable<CategoryCreatedUpdatedEvent> UpdateFrom(CategoryUpdateCommand command)
-    {
-        Id = command.Id;
-        Name = command.Name;
-
-        yield return InstanceOfCreatedUpdatedEvent();
-    }
-
-    public IEnumerable<CategoryRemovedEvent> UpdateFrom(CategoryRemoveCommand command)
-    {
-        Id = command.Id;
-        
-        yield return new CategoryRemovedEvent(Id);
-    }
-
-    private CategoryCreatedUpdatedEvent InstanceOfCreatedUpdatedEvent()
-        => new(Id, Name);
+    public void SetName(string name)
+        => Name = name;
 }

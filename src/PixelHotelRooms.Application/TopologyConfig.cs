@@ -1,11 +1,10 @@
 ﻿using PixelHotel.Core.Bus;
 using PixelHotel.Core.Bus.Abstractions;
 using PixelHotel.Events.Rooms.Category;
-using PixelHotelRooms.Application.Consumers;
 
 namespace PixelHotelRooms.Application;
 
-public class RegistrationConsumers : IBusConfiguration
+public class TopologyConfig : IBusConfiguration
 {
     public BusConfiguration GetConfiguration()
         => new()
@@ -24,16 +23,6 @@ public class RegistrationConsumers : IBusConfiguration
                            }
                        ]
                    }
-               ],
-            Receives = [
-                new ReceiveConfiguration
-                {
-                    ExchangeName = "pixel-hotel-rooms-events-to-reservations",
-                    QueueName = "pixel-hotel-rooms-events-to-reservations",
-                    Consumers = [
-                        typeof(CategoryCreatedUpdatedConsumer)
-                    ]
-                }
-            ]
+               ]
         };
 }

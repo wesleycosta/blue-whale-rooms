@@ -4,5 +4,5 @@ namespace PixelHotelRooms.Application.Abstractions;
 
 public interface ICategoryPublisher
 {
-    Task PublishCreatedUpdatedEvent(IEnumerable<CategoryCreatedUpdatedEvent> events);
+    Task PublishCreatedUpdatedEvent(params CategoryCreatedUpdatedEvent[] events);
 }

@@ -1,9 +1,7 @@
-﻿using PixelHotel.Core.Domain;
+﻿namespace PixelHotelRooms.Domain.CategoryAggregate.Commands;
 
-namespace PixelHotelRooms.Domain.CategoryAggregate.Commands;
-
-public sealed class CategoryUpdateCommand : CommandBase
+public sealed class CategoryUpdateCommand(Guid id,
+    string name) : CategoryCommandBase(name)
 {
-    public required Guid Id { get; init; }
-    public required string Name { get; init; }
+    public Guid Id { get; init; } = id;
 }

@@ -16,7 +16,7 @@ internal class CategoryPublisher : ICategoryPublisher
         _loggerService = loggerService;
     }
 
-    public async Task PublishCreatedUpdatedEvent(IEnumerable<CategoryCreatedUpdatedEvent> events)
+    public async Task PublishCreatedUpdatedEvent(params CategoryCreatedUpdatedEvent[] events)
     {
         foreach (var @event in events)
         {

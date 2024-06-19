@@ -1,8 +1,5 @@
-﻿using PixelHotel.Core.Domain;
+﻿namespace PixelHotelRooms.Domain.CategoryAggregate.Commands;
 
-namespace PixelHotelRooms.Domain.CategoryAggregate.Commands;
-
-public sealed class CategoryCreateCommand : CommandBase
+public sealed class CategoryCreateCommand(string name) : CategoryCommandBase(name)
 {
-    public required string Name { get; init; }
 }
