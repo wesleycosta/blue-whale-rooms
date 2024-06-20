@@ -32,6 +32,16 @@ public sealed class CategoriesController(IMediatorHandler _mediator,
         return Ok(result);
     }
 
+    [HttpDelete]
+    [Route("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var command = new CategoryRemoveCommand(id);
+        var result = await _mediator.SendCommand(command);
+
+        return Ok(result);
+    }
+
     [HttpGet]
     [Route("{id:guid}")]
     public async Task<IActionResult> GetById(Guid id)

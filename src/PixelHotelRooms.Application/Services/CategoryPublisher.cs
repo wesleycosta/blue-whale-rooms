@@ -1,29 +1,36 @@
 ﻿using MassTransit;
 using PixelHotel.Core.Abstractions;
 using PixelHotel.Events.Rooms.Category;
+using PixelHotel.Infra.Logger;
 using PixelHotelRooms.Application.Abstractions;
+using Event = PixelHotel.Core.Events.Event;
 
 namespace PixelHotelRooms.Application.Services;
 
-internal class CategoryPublisher : ICategoryPublisher
+internal class CategoryPublisher(IBus bus, ILoggerService loggerService) : ICategoryPublisher
 {
-    private readonly IBus _bus;
-    private readonly ILoggerService _loggerService;
+    private readonly IBus _bus = bus;
+    private readonly ILoggerService _loggerService = loggerService;
 
-    public CategoryPublisher(IBus bus, ILoggerService loggerService)
+    public async Task PublishCreatedUpdatedEvent(CategoryCreatedUpdatedEvent @event)
     {
-        _bus = bus;
-        _loggerService = loggerService;
+        LogPublishEvent(@event, nameof(CategoryCreatedUpdatedEvent));
+        @event.TranceId = _loggerService.GetTraceId();
+
+        await _bus.Publish(@event);
     }
 
-    public async Task PublishCreatedUpdatedEvent(params CategoryCreatedUpdatedEvent[] events)
+    public async Task PublishRemovedEvent(CategoryRemovedEvent @event)
     {
-        foreach (var @event in events)
-        {
-            _loggerService.Information("PublishEvent", $"Publish {nameof(CategoryCreatedUpdatedEvent)}", _loggerService.GetTraceId());
-            @event.TranceId = _loggerService.GetTraceId();
+        LogPublishEvent(@event, nameof(CategoryRemovedEvent));
+        @event.TranceId = _loggerService.GetTraceId();
 
-            await _bus.Publish(@event);
-        }
+        await _bus.Publish(@event);
     }
+
+    private void LogPublishEvent(Event @event, string eventName)
+        => _loggerService.Information(nameof(OperationLogs.PublishedEvent),
+            $"Publish {eventName}",
+            @event,
+            _loggerService.GetTraceId());
 }

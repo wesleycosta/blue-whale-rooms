@@ -6,8 +6,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="PixelHotel.Api" Version="1.0.1" />
-		<PackageReference Include="PixelHotel.Core" Version="1.0.1" />
+		<PackageReference Include="PixelHotel.Api" Version="1.0.3" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	</ItemGroup>
 

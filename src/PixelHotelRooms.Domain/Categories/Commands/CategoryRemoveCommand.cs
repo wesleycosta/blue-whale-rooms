@@ -2,7 +2,7 @@
 
 namespace PixelHotelRooms.Domain.CategoryAggregate.Commands;
 
-public sealed class CategoryRemoveCommand : CommandBase
+public sealed class CategoryRemoveCommand(Guid id) : CommandBase
 {
-    public required Guid Id { get; init; }
+    public Guid Id { get; private set; } = id;
 }

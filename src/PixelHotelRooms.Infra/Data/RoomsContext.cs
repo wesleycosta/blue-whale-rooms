@@ -1,21 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PixelHotel.Core.Abstractions;
 using PixelHotel.Infra.Configurations;
-using PixelHotelRooms.Domain.CategoryAggregate;
 
 namespace PixelHotelRooms.Infra.Data;
 
-public class RoomsContext : DbContext, IUnitOfWork
+public class RoomsContext(DbContextOptions<RoomsContext> options) : DbContext(options), IUnitOfWork
 {
-    public RoomsContext(DbContextOptions<RoomsContext> options) : base(options)
-    {
-    }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.ConfigureDefault();
-        modelBuilder.Entity<Category>().HasQueryFilter(p => !p.Removed);
-    }
+        => modelBuilder.ConfigureDefault();
 
     public async Task<bool> Commit()
         => await SaveChangesAsync() > 0;
