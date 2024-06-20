@@ -19,6 +19,7 @@ public class ApplicationModule : IModuleRegister
 
         services.AddCommandHandler<CategoryCreateCommand, CategoryCreateCommandHandler>();
         services.AddCommandHandler<CategoryUpdateCommand, CategoryUpdateCommandHandler>();
+        services.AddCommandHandler<CategoryRemoveCommand, CategoryRemoveCommandHandler>();
 
         return services;
     }

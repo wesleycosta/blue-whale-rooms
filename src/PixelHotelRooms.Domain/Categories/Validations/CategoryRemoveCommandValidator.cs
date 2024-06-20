@@ -4,16 +4,21 @@ using PixelHotelRooms.Domain.CategoryAggregate.Commands;
 
 namespace PixelHotelRooms.Domain.CategoryAggregate.Validations;
 
-public sealed class CategoryUpdateCommandValidator : CategoryCommandValidatorBase<CategoryUpdateCommand>
+public sealed class CategoryRemoveCommandValidator : ValidatorBase<CategoryRemoveCommand>
 {
-    public CategoryUpdateCommandValidator(ICategoryRepository categoryRepository) : base(categoryRepository)
-        => ValidateIfExists();
+    private readonly ICategoryRepository _categoryRepository;
+
+    public CategoryRemoveCommandValidator(ICategoryRepository categoryRepository)
+    {
+        _categoryRepository = categoryRepository;
+        ValidateIfExists();
+    }
 
     private void ValidateIfExists()
         => RuleFor(command => command)
         .CustomAsync(async (command, context, cancellationToken) =>
         {
-            var categoryExists = await CategoryRepository.Any(p => p.Id == command.Id);
+            var categoryExists = await _categoryRepository.Any(p => p.Id == command.Id);
             if (!categoryExists)
             {
                 context.AddFailure(ValidatorMessages.NotFound(nameof(Category)));

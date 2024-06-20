@@ -12,6 +12,7 @@ public class DomainModule : IModuleRegister
     {
         services.AddValidator<CategoryCreateCommand, CategoryCreateCommandValidator>();
         services.AddValidator<CategoryUpdateCommand, CategoryUpdateCommandValidator>();
+        services.AddValidator<CategoryRemoveCommand, CategoryRemoveCommandValidator>();
 
         return services;
     }
