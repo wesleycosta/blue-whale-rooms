@@ -49,4 +49,11 @@ public sealed class CategoriesController(IMediatorHandler _mediator,
         var result = await _categoryService.GetById(id);
         return Ok(result);
     }
+
+    [HttpGet("search")]
+    public async Task<IActionResult> Search([FromQuery] string? searchValue)
+    {
+        var result = await _categoryService.Search(searchValue);
+        return Ok(result);
+    }
 }
