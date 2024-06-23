@@ -1,12 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Orangotango.Core.Abstractions;
-using Orangotango.Core.Extensions;
 using Orangotango.Rooms.Application.Abstractions;
 using Orangotango.Rooms.Application.Handlers;
 using Orangotango.Rooms.Application.Mappers;
 using Orangotango.Rooms.Application.Services;
 using Orangotango.Rooms.Domain.Categories.Commands;
-
 
 namespace Orangotango.Rooms.Application;
 
