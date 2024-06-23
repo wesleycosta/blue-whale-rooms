@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MassTransit" Version="8.2.0" />
+		<PackageReference Include="MassTransit.Abstractions" Version="8.2.0" />
+		<PackageReference Include="MassTransit.RabbitMQ" Version="8.2.0" />
+		<PackageReference Include="MediatR" Version="11.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Orangotango.Rooms.Domain\Orangotango.Rooms.Domain.csproj" />
+	</ItemGroup>
+
+</Project>
