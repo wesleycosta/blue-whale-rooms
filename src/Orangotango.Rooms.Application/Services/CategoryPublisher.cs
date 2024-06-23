@@ -29,7 +29,7 @@ internal class CategoryPublisher(IBus bus, ILoggerService loggerService) : ICate
     }
 
     private void LogPublishEvent(Event @event, string eventName)
-        => _loggerService.Information(nameof(OperationLogs.PublishedEvent),
+        => _loggerService.Information(nameof(OperationLogs.EventPublished),
             $"Publish {eventName}",
             @event,
             _loggerService.GetTraceId());

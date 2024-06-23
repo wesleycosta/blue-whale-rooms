@@ -1,6 +1,6 @@
-﻿using OrangotangoRooms.Application;
-using OrangotangoRooms.Domain;
-using OrangotangoRooms.Infra;
+﻿using Orangotango.Rooms.Application;
+using Orangotango.Rooms.Domain;
+using Orangotango.Rooms.Infra;
 using System.Collections.Generic;
 using System.Reflection;
 

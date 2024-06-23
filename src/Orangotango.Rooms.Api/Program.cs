@@ -1,6 +1,6 @@
-﻿using Orangotango.Rooms.Api;
-using Orangotango.Api;
-using OrangotangoRooms.Infra.Data;
+﻿using Orangotango.Api;
+using Orangotango.Rooms.Api;
+using Orangotango.Rooms.Infra.Data;
 
 var app = new WebAppBuilder()
     .BuildDefault(args)

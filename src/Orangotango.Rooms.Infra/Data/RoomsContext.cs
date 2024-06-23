@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Orangotango.Core.Abstractions;
 using Orangotango.Infra.Configurations;
-using OrangotangoRooms.Domain.CategoryAggregate;
+using Orangotango.Rooms.Domain.Categories;
 
 namespace Orangotango.Rooms.Infra.Data;
 

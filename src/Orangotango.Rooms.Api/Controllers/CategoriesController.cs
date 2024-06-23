@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using Orangotango.Rooms.Api.InputModel;
 using Orangotango.Api;
 using Orangotango.Core.Bus.Abstractions;
-using OrangotangoRooms.Application.Abstractions;
-using OrangotangoRooms.Domain.CategoryAggregate.Commands;
+using Orangotango.Rooms.Api.InputModel;
+using Orangotango.Rooms.Application.Abstractions;
+using Orangotango.Rooms.Domain.Categories.Commands;
 using System;
 using System.Threading.Tasks;
 
@@ -37,9 +37,9 @@ public sealed class CategoriesController(IMediatorHandler _mediator,
     public async Task<IActionResult> Delete(Guid id)
     {
         var command = new CategoryRemoveCommand(id);
-        await _mediator.SendCommand(command);
+        var result = await _mediator.SendCommand(command);
 
-        return NoContent();
+        return Ok(result);
     }
 
     [HttpGet]
