@@ -37,9 +37,9 @@ public sealed class CategoriesController(IMediatorHandler _mediator,
     public async Task<IActionResult> Delete(Guid id)
     {
         var command = new CategoryRemoveCommand(id);
-        var result = await _mediator.SendCommand(command);
+        await _mediator.SendCommand(command);
 
-        return Ok(result);
+        return NoContent();
     }
 
     [HttpGet]
@@ -50,7 +50,7 @@ public sealed class CategoriesController(IMediatorHandler _mediator,
         return Ok(result);
     }
 
-    [HttpGet("search")]
+    [HttpGet]
     public async Task<IActionResult> Search([FromQuery] string? searchValue)
     {
         var result = await _categoryService.Search(searchValue);
