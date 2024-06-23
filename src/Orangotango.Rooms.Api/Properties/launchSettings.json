@@ -1,7 +1,7 @@
 ﻿{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "OrangotangoRooms.Api": {
+    "Orangotango.Rooms.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api-docs",

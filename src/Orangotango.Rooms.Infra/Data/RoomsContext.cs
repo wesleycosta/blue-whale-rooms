@@ -2,6 +2,7 @@
 using Orangotango.Core.Abstractions;
 using Orangotango.Infra.Configurations;
 using Orangotango.Rooms.Domain.Categories;
+using Orangotango.Rooms.Domain.Rooms;
 
 namespace Orangotango.Rooms.Infra.Data;
 
@@ -10,7 +11,9 @@ public class RoomsContext(DbContextOptions<RoomsContext> options) : DbContext(op
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ConfigureDefault();
+        
         modelBuilder.Entity<Category>().HasQueryFilter(filter => !filter.Removed);
+        modelBuilder.Entity<Room>().HasQueryFilter(filter => !filter.Removed);
     }
 
     public async Task<bool> Commit()
