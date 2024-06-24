@@ -4,6 +4,6 @@ namespace Orangotango.Rooms.Application.Abstractions;
 
 public interface ICategoryPublisher
 {
-    Task PublishCreatedUpdatedEvent(CategoryCreatedUpdatedEvent @event);
+    Task PublishCategoryUpsertedEvent(CategoryUpsertedEvent @event);
     Task PublishRemovedEvent(CategoryRemovedEvent @event);
 }

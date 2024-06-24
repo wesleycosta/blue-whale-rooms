@@ -12,10 +12,10 @@ internal class CategoryPublisher(IBus bus, ILoggerService loggerService) : ICate
     private readonly IBus _bus = bus;
     private readonly ILoggerService _loggerService = loggerService;
 
-    public async Task PublishCreatedUpdatedEvent(CategoryCreatedUpdatedEvent @event)
+    public async Task PublishCategoryUpsertedEvent(CategoryUpsertedEvent @event)
     {
-        LogPublishEvent(@event, nameof(CategoryCreatedUpdatedEvent));
-        @event.TranceId = _loggerService.GetTraceId();
+        LogPublishEvent(@event, nameof(CategoryUpsertedEvent));
+        @event.TranceId = _loggerService.GetTraceId() ?? Guid.Empty; // TODO
 
         await _bus.Publish(@event);
     }
@@ -23,7 +23,7 @@ internal class CategoryPublisher(IBus bus, ILoggerService loggerService) : ICate
     public async Task PublishRemovedEvent(CategoryRemovedEvent @event)
     {
         LogPublishEvent(@event, nameof(CategoryRemovedEvent));
-        @event.TranceId = _loggerService.GetTraceId();
+        @event.TranceId = _loggerService.GetTraceId() ?? Guid.Empty; // TODO
 
         await _bus.Publish(@event);
     }

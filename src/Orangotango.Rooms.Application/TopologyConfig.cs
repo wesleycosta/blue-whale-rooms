@@ -18,7 +18,7 @@ public class TopologyConfig : IBusConfiguration
                        [
                            new PublishEventConfig
                            {
-                                   EventType = typeof(CategoryCreatedUpdatedEvent),
+                                   EventType = typeof(CategoryUpsertedEvent),
                                    QueueName = "pixel-hotel-rooms-events-to-reservations"
                            }
                        ]

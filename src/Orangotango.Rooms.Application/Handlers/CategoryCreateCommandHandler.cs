@@ -35,8 +35,8 @@ internal sealed class CategoryCreateCommandHandler : CommandHandlerBase<Category
 
         if (await Commit())
         {
-            var @event = new CategoryCreatedUpdatedEvent(category.Id, category.Name);
-            await _publisher.PublishCreatedUpdatedEvent(@event);
+            var @event = new CategoryUpsertedEvent(category.Id, category.Name);
+            await _publisher.PublishCategoryUpsertedEvent(@event);
 
             return SuccessfulResult(_mapper.MapToCategoryResult(category));
         }
