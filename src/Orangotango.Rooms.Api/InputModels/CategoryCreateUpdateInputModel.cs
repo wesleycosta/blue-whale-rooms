@@ -1,4 +1,4 @@
-﻿namespace Orangotango.Rooms.Api.InputModel;
+﻿namespace Orangotango.Rooms.Api.InputModels;
 
 public class CategoryCreateUpdateInputModel
 {

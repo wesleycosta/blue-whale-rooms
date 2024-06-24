@@ -8,23 +8,12 @@ using Orangotango.Rooms.Domain.Categories.Commands;
 
 namespace Orangotango.Rooms.Application.Handlers;
 
-internal sealed class CategoryCreateCommandHandler : CommandHandlerBase<CategoryCreateCommand>
+internal sealed class CategoryCreateCommandHandler(IUnitOfWork _unitOfWork,
+    IValidator<CategoryCreateCommand> _validator,
+    ICategoryMapper _mapper,
+    ICategoryRepository _repository,
+    ICategoryPublisher _publisher) : CommandHandlerBase<CategoryCreateCommand>(_unitOfWork, _validator)
 {
-    private readonly ICategoryMapper _mapper;
-    private readonly ICategoryRepository _repository;
-    private readonly ICategoryPublisher _publisher;
-
-    public CategoryCreateCommandHandler(IUnitOfWork unitOfWork,
-        IValidator<CategoryCreateCommand> validator,
-        ICategoryMapper mapper,
-        ICategoryRepository repository,
-        ICategoryPublisher publisher) : base(unitOfWork, validator)
-    {
-        _mapper = mapper;
-        _repository = repository;
-        _publisher = publisher;
-    }
-
     public override async Task<Result> Handle(CategoryCreateCommand command, CancellationToken cancellationToken)
     {
         if (!await Validate(command))
@@ -36,7 +25,7 @@ internal sealed class CategoryCreateCommandHandler : CommandHandlerBase<Category
         if (await Commit())
         {
             var @event = new CategoryUpsertedEvent(category.Id, category.Name);
-            await _publisher.PublishCategoryUpsertedEvent(@event);
+            await _publisher.PublishEvent(@event);
 
             return SuccessfulResult(_mapper.MapToCategoryResult(category));
         }

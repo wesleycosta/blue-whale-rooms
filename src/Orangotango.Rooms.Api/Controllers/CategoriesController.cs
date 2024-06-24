@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Orangotango.Api;
 using Orangotango.Core.Bus.Abstractions;
-using Orangotango.Rooms.Api.InputModel;
+using Orangotango.Rooms.Api.InputModels;
 using Orangotango.Rooms.Application.Abstractions;
 using Orangotango.Rooms.Domain.Categories.Commands;
 using System;

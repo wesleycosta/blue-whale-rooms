@@ -1,36 +1,20 @@
-﻿using MassTransit;
-using Orangotango.Core.Abstractions;
-using Orangotango.Core.Enums;
-using Orangotango.Events.Rooms.Category;
+﻿using Orangotango.Core.Abstractions;
+using Orangotango.Core.Bus;
+using Orangotango.Core.Bus.Abstractions;
+using Orangotango.Core.Events;
 using Orangotango.Rooms.Application.Abstractions;
-using Event = Orangotango.Core.Events.Event;
 
 namespace Orangotango.Rooms.Application.Services;
 
-internal class CategoryPublisher(IBus bus, ILoggerService loggerService) : ICategoryPublisher
+internal class CategoryPublisher(ILoggerService logger,
+    IPublisherEvent _publisherEvent) : PublisherEventBase(logger), ICategoryPublisher
 {
-    private readonly IBus _bus = bus;
-    private readonly ILoggerService _loggerService = loggerService;
+    private readonly ILoggerService _logger = logger;
 
-    public async Task PublishCategoryUpsertedEvent(CategoryUpsertedEvent @event)
+    public async Task PublishEvent<T>(T @event) where T : Event
     {
-        LogPublishEvent(@event, nameof(CategoryUpsertedEvent));
-        @event.TranceId = _loggerService.GetTraceId() ?? Guid.Empty; // TODO
-
-        await _bus.Publish(@event);
+        @event.TranceId = _logger.GetTraceId();
+        await _publisherEvent.Publish(@event);
+        LogPublishEvent(@event);
     }
-
-    public async Task PublishRemovedEvent(CategoryRemovedEvent @event)
-    {
-        LogPublishEvent(@event, nameof(CategoryRemovedEvent));
-        @event.TranceId = _loggerService.GetTraceId() ?? Guid.Empty; // TODO
-
-        await _bus.Publish(@event);
-    }
-
-    private void LogPublishEvent(Event @event, string eventName)
-        => _loggerService.Information(nameof(OperationLogs.EventPublished),
-            $"Publish {eventName}",
-            @event,
-            _loggerService.GetTraceId());
 }

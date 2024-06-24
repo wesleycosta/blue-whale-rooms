@@ -5,14 +5,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="C:\Users\Wesley\.nuget\packages\orangotango.core\1.3.2\contentFiles\any\net8.0\favicon.ico" />
-    <Content Remove="C:\Users\Wesley\.nuget\packages\orangotango.events\1.3.2\contentFiles\any\net8.0\favicon.ico" />
-  </ItemGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Orangotango.Core" Version="1.3.2" />
-	  <PackageReference Include="Orangotango.Events" Version="1.3.2" />
+	  <PackageReference Include="Orangotango.Core" Version="1.4.5" />
+	  <PackageReference Include="Orangotango.Events" Version="1.4.5" />
   </ItemGroup>
 
 </Project>

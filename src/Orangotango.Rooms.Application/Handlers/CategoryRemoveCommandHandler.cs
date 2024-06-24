@@ -8,35 +8,26 @@ using Orangotango.Rooms.Domain.Categories.Commands;
 
 namespace Orangotango.Rooms.Application.Handlers;
 
-internal sealed class CategoryRemoveCommandHandler : CommandHandlerBase<CategoryRemoveCommand>
+internal sealed class CategoryRemoveCommandHandler(IUnitOfWork unitOfWork,
+    IValidator<CategoryRemoveCommand> validator,
+    ICategoryMapper mapper,
+    ICategoryRepository repository,
+    ICategoryPublisher publisher) : CommandHandlerBase<CategoryRemoveCommand>(unitOfWork, validator)
 {
-    private readonly ICategoryMapper _mapper;
-    private readonly ICategoryRepository _repository;
-    private readonly ICategoryPublisher _publisher;
-
-    public CategoryRemoveCommandHandler(IUnitOfWork unitOfWork,
-        IValidator<CategoryRemoveCommand> validator,
-        ICategoryMapper mapper,
-        ICategoryRepository repository,
-        ICategoryPublisher publisher) : base(unitOfWork, validator)
-    {
-        _mapper = mapper;
-        _repository = repository;
-        _publisher = publisher;
-    }
-
     public override async Task<Result> Handle(CategoryRemoveCommand command, CancellationToken cancellationToken)
     {
         if (!await Validate(command))
             return BadResult();
 
-        var category = await _repository.GetById(command.Id);
-        _repository.SoftDelete(category);
+        var category = await repository.GetById(command.Id);
+        repository.SoftDelete(category);
 
         if (await Commit())
         {
-            await _publisher.PublishRemovedEvent(new CategoryRemovedEvent(category.Id));
-            return SuccessfulResult(_mapper.MapToCategoryResult(category));
+            var @event = new CategoryRemovedEvent(category.Id);
+            await publisher.PublishEvent(@event);
+
+            return SuccessfulResult(mapper.MapToCategoryResult(category));
         }
 
         return BadResult();

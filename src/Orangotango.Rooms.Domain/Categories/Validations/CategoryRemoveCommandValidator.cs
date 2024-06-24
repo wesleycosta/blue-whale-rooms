@@ -35,7 +35,7 @@ public sealed class CategoryRemoveCommandValidator : ValidatorBase<CategoryRemov
       => RuleFor(command => command.Id)
       .CustomAsync(async (id, context, cancellationToken) =>
       {
-          var isRoomLinkedToCategory = await _roomRepository.Any(p => p.RoomCategoryId == id);
+          var isRoomLinkedToCategory = await _roomRepository.Any(p => p.CategoryId == id);
           if (isRoomLinkedToCategory)
           {
               context.AddFailure("You cannot delete a category that is linked to a room.");
