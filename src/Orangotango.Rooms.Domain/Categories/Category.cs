@@ -8,7 +8,7 @@ public sealed class Category : EntityBase
 {
     public string Name { get; private set; }
 
-    public IEnumerable<Room> Rooms { get; set; }
+    public IEnumerable<Room> Rooms { get; private set; }
 
     public Category(string name)
     {
