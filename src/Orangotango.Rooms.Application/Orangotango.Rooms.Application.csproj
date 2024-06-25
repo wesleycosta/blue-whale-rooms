@@ -10,7 +10,7 @@
 		<PackageReference Include="MassTransit.Abstractions" Version="8.2.0" />
 		<PackageReference Include="MassTransit.RabbitMQ" Version="8.2.0" />
 		<PackageReference Include="MediatR" Version="11.1.0" />
-		<PackageReference Include="Orangotango.Core" Version="1.7.0" />
+		<PackageReference Include="Orangotango.Core" Version="1.8.0" />
 	</ItemGroup>
 
 	<ItemGroup>

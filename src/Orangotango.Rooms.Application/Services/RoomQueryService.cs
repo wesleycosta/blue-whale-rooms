@@ -18,19 +18,23 @@ internal sealed class RoomQueryService(IRoomRepository _repository,
         return SuccessfulResult(roomResult);
     }
 
-    public async Task<IEnumerable<RoomResult>> Search(string searchValue)
+    public async Task<IEnumerable<RoomResultFull>> Search(string searchValue)
     {
         Expression<Func<Room, bool>> filter = p => true;
         if (!string.IsNullOrEmpty(searchValue))
             filter = room => room.Name.Contains(searchValue);
 
-        return await _repository.GetByExpression(filter, p => _mapper.MapToRoomResult(p));
+        return await _repository.GetByExpression(filter,
+            p => _mapper.MapToRoomResultFull(p),
+            order => order.Name,
+            ascending: true,
+            room => room.Category);
     }
 
     public async Task<IEnumerable<RoomResult>> GetAll()
         => await _repository.GetAll(p => _mapper.MapToRoomResult(p));
 
     private async Task<RoomResult> GetRoomResultById(Guid id)
-        => await _repository.GetFirstByExpression(category => category.Id == id, 
+        => await _repository.GetFirstByExpression(category => category.Id == id,
             p => _mapper.MapToRoomResult(p));
 }

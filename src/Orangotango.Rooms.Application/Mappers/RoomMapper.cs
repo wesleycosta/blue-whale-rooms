@@ -14,4 +14,14 @@ internal sealed class RoomMapper : IRoomMapper
             Number = room.Number,
             CategoryId = room.CategoryId,
         };
+
+    public RoomResultFull MapToRoomResultFull(Room room)
+        => new()
+        {
+            Id = room.Id,
+            Name = room.Name,
+            Number = room.Number,
+            CategoryId = room.CategoryId,
+            CategoryName = room.Category.Name,
+        };
 }
