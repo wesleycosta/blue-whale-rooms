@@ -1,6 +1,6 @@
 ﻿using Orangotango.Core.Domain;
+using Orangotango.Events.Rooms.Category;
 using Orangotango.Rooms.Domain.Rooms;
-using System.Security.Principal;
 
 namespace Orangotango.Rooms.Domain.Categories;
 
@@ -16,6 +16,15 @@ public sealed class Category : EntityBase
         Name = name;
     }
 
-    public void SetName(string name)
-        => Name = name;
+    public Category SetName(string name)
+    {
+        Name = name;
+        return this;
+    }
+
+    public CategoryUpsertedEvent GenerateUpsertedEvent()
+        => new(Id, Name);
+
+    public CategoryRemovedEvent GenerateRemovedEvent()
+        => new(Id);
 }

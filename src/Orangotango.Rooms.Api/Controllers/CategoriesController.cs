@@ -11,10 +11,10 @@ namespace Orangotango.Rooms.Api.Controllers;
 
 [Route("api/categories")]
 public sealed class CategoriesController(IMediatorHandler _mediator,
-    ICategoryService _categoryService) : MainController
+    ICategoryQueryService _queryService) : MainController
 {
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CategoryCreateUpdateInputModel inputModel)
+    public async Task<IActionResult> Create([FromBody] CategoryUpsertInputModel inputModel)
     {
         var command = new CategoryCreateCommand(inputModel.Name);
         var result = await _mediator.SendCommand(command);
@@ -24,7 +24,7 @@ public sealed class CategoriesController(IMediatorHandler _mediator,
 
     [HttpPut]
     [Route("{id:guid}")]
-    public async Task<IActionResult> Update(Guid id, [FromBody] CategoryCreateUpdateInputModel inputModel)
+    public async Task<IActionResult> Update(Guid id, [FromBody] CategoryUpsertInputModel inputModel)
     {
         var command = new CategoryUpdateCommand(id, inputModel.Name);
         var result = await _mediator.SendCommand(command);
@@ -46,14 +46,14 @@ public sealed class CategoriesController(IMediatorHandler _mediator,
     [Route("{id:guid}")]
     public async Task<IActionResult> GetById(Guid id)
     {
-        var result = await _categoryService.GetById(id);
+        var result = await _queryService.GetById(id);
         return Ok(result);
     }
 
     [HttpGet]
     public async Task<IActionResult> Search([FromQuery] string? searchValue)
     {
-        var result = await _categoryService.Search(searchValue);
+        var result = await _queryService.Search(searchValue);
         return Ok(result);
     }
 }

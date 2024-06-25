@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using Orangotango.Core.Abstractions;
 using Orangotango.Core.Services;
-using Orangotango.Events.Rooms.Category;
 using Orangotango.Rooms.Application.Abstractions;
 using Orangotango.Rooms.Domain.Categories;
 using Orangotango.Rooms.Domain.Categories.Commands;
@@ -24,9 +23,7 @@ internal sealed class CategoryCreateCommandHandler(IUnitOfWork _unitOfWork,
 
         if (await Commit())
         {
-            var @event = new CategoryUpsertedEvent(category.Id, category.Name);
-            await _publisher.PublishEvent(@event);
-
+            await _publisher.Publish(category.GenerateUpsertedEvent());
             return SuccessfulResult(_mapper.MapToCategoryResult(category));
         }
 

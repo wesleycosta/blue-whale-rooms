@@ -5,7 +5,7 @@ using Orangotango.Rooms.Application.Abstractions;
 
 namespace Orangotango.Rooms.Application.Services;
 
-internal sealed class CategoryPublisher(ILoggerService logger,
-    IPublisherEvent publisherEvent) : PublisherEventBase(logger, publisherEvent), ICategoryPublisher
+internal sealed class RoomPublisher(ILoggerService logger,
+    IPublisherEvent publisherEvent) : PublisherEventBase(logger, publisherEvent), IRoomPublisher
 {
 }

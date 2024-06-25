@@ -32,14 +32,13 @@ public sealed class CategoryRemoveCommandValidator : ValidatorBase<CategoryRemov
         });
 
     private void ValidateRoomLinkedToCategory()
-      => RuleFor(command => command.Id)
-      .CustomAsync(async (id, context, cancellationToken) =>
-      {
-          var isRoomLinkedToCategory = await _roomRepository.Any(p => p.CategoryId == id);
-          if (isRoomLinkedToCategory)
-          {
-              context.AddFailure("You cannot delete a category that is linked to a room.");
-          }
-      });
-
+        => RuleFor(command => command.Id)
+        .CustomAsync(async (id, context, cancellationToken) =>
+        {
+            var isRoomLinkedToCategory = await _roomRepository.Any(p => p.CategoryId == id);
+            if (isRoomLinkedToCategory)
+            {
+                context.AddFailure("You cannot delete a category that is linked to a room.");
+            }
+        });
 }

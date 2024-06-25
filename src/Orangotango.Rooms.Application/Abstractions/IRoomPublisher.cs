@@ -2,6 +2,6 @@
 
 namespace Orangotango.Rooms.Application.Abstractions;
 
-public interface ICategoryPublisher : IPublisherEvent
+public interface IRoomPublisher : IPublisherEvent
 {
 }
