@@ -24,7 +24,10 @@ internal sealed class CategoryQueryService(ICategoryMapper _mapper,
         if (!string.IsNullOrEmpty(searchValue))
             filter = category => category.Name.Contains(searchValue);
 
-        return await _repository.GetByExpression(filter, p => _mapper.MapToCategoryResult(p));
+        return await _repository.GetByExpression(filter,
+            p => _mapper.MapToCategoryResult(p),
+            order => order.Name,
+            ascending: true);
     }
 
     public async Task<IEnumerable<CategoryResult>> GetAll()
