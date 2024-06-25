@@ -6,7 +6,7 @@ namespace Orangotango.Rooms.Application.Mappers;
 
 internal sealed class RoomMapper : IRoomMapper
 {
-    public RoomResult MapToRoomResult(Room room)
+    public RoomBasicResult MapToRoomResult(Room room)
         => new()
         {
             Id = room.Id,
@@ -15,7 +15,7 @@ internal sealed class RoomMapper : IRoomMapper
             CategoryId = room.CategoryId,
         };
 
-    public RoomResultFull MapToRoomResultFull(Room room)
+    public RoomResult MapToRoomResultFull(Room room)
         => new()
         {
             Id = room.Id,

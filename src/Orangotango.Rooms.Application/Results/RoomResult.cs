@@ -1,10 +1,6 @@
-﻿using Orangotango.Core.Results;
+﻿namespace Orangotango.Rooms.Application.Results;
 
-namespace Orangotango.Rooms.Application.Results;
-
-public class RoomResult : ResultBase
+public class RoomResult : RoomBasicResult
 {
-    public string Name { get; set; }
-    public int Number { get; set; }
-    public Guid CategoryId { get; set; }
+    public string CategoryName { get; set; }
 }

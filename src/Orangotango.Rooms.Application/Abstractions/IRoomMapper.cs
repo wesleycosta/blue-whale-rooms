@@ -5,6 +5,6 @@ namespace Orangotango.Rooms.Application.Abstractions;
 
 public interface IRoomMapper
 {
-    RoomResult MapToRoomResult(Room room);
-    RoomResultFull MapToRoomResultFull(Room room);
+    RoomBasicResult MapToRoomResult(Room room);
+    RoomResult MapToRoomResultFull(Room room);
 }

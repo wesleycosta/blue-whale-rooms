@@ -18,7 +18,7 @@ internal sealed class RoomQueryService(IRoomRepository _repository,
         return SuccessfulResult(roomResult);
     }
 
-    public async Task<IEnumerable<RoomResultFull>> Search(string searchValue)
+    public async Task<IEnumerable<RoomResult>> Search(string searchValue)
     {
         Expression<Func<Room, bool>> filter = p => true;
         if (!string.IsNullOrEmpty(searchValue))
@@ -31,10 +31,10 @@ internal sealed class RoomQueryService(IRoomRepository _repository,
             room => room.Category);
     }
 
-    public async Task<IEnumerable<RoomResult>> GetAll()
+    public async Task<IEnumerable<RoomBasicResult>> GetAll()
         => await _repository.GetAll(p => _mapper.MapToRoomResult(p));
 
-    private async Task<RoomResult> GetRoomResultById(Guid id)
+    private async Task<RoomBasicResult> GetRoomResultById(Guid id)
         => await _repository.GetFirstByExpression(category => category.Id == id,
             p => _mapper.MapToRoomResult(p));
 }

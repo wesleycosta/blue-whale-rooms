@@ -2,7 +2,7 @@
 
 namespace Orangotango.Rooms.Application.Abstractions;
 
-public interface IRoomQueryService : IQueryServiceBase<RoomResult>
+public interface IRoomQueryService : IQueryServiceBase<RoomBasicResult>
 {
-    Task<IEnumerable<RoomResultFull>> Search(string searchValue);
+    Task<IEnumerable<RoomResult>> Search(string searchValue);
 }
