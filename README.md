@@ -1,4 +1,5 @@
-# orangotango-rooms
+# orangotango-room
+![Logo](https://github.com/wesleycosta/orangotango/raw/main/images/logos/logo_full.png)
 
 A microservice responsible for providing information about the available rooms at the hotel.
 
