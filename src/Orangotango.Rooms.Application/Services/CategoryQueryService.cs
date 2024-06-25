@@ -27,6 +27,9 @@ internal sealed class CategoryQueryService(ICategoryMapper _mapper,
         return await _repository.GetByExpression(filter, p => _mapper.MapToCategoryResult(p));
     }
 
+    public async Task<IEnumerable<CategoryResult>> GetAll()
+        => await _repository.GetAll(p => _mapper.MapToCategoryResult(p));
+
     private async Task<CategoryResult> GetCategoryResultById(Guid id)
         => await _repository.GetFirstByExpression(category => category.Id == id,
             p => _mapper.MapToCategoryResult(p));

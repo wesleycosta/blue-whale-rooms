@@ -56,6 +56,13 @@ public sealed class RoomsController(IMediatorHandler _mediator,
     }
 
     [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var result = await _queryService.GetAll();
+        return Ok(result);
+    }
+
+    [HttpGet("search")]
     public async Task<IActionResult> Search([FromQuery] string searchValue)
     {
         var result = await _queryService.Search(searchValue);

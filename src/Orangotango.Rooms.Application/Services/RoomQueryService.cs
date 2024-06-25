@@ -27,6 +27,9 @@ internal sealed class RoomQueryService(IRoomRepository _repository,
         return await _repository.GetByExpression(filter, p => _mapper.MapToRoomResult(p));
     }
 
+    public async Task<IEnumerable<RoomResult>> GetAll()
+        => await _repository.GetAll(p => _mapper.MapToRoomResult(p));
+
     private async Task<RoomResult> GetRoomResultById(Guid id)
         => await _repository.GetFirstByExpression(category => category.Id == id, 
             p => _mapper.MapToRoomResult(p));
