@@ -5,6 +5,7 @@ A microservice responsible for providing information about the available rooms a
 
 [![CodeFactor](https://www.codefactor.io/repository/github/wesleycosta/orangotango-rooms/badge)](https://www.codefactor.io/repository/github/wesleycosta/orangotango-rooms)
 [![.NET](https://github.com/wesleycosta/orangotango-rooms/actions/workflows/dotnet.yml/badge.svg)](https://github.com/wesleycosta/orangotango-rooms/actions/workflows/dotnet.yml)
+[![Docker Hub](https://img.shields.io/badge/docker-hub-blue.svg)](https://hub.docker.com/repository/docker/wesleycosta/orangotango-rooms)
 
 ### Execution:
 
