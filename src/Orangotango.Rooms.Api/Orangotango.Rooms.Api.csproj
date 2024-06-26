@@ -5,7 +5,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Orangotango.Api" Version="1.8.0" />
+		<PackageReference Include="NewRelic.Agent.Api" Version="10.25.1" />
+		<PackageReference Include="Orangotango.Api" Version="1.8.1" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	</ItemGroup>
 
@@ -13,6 +14,12 @@
 		<ProjectReference Include="..\Orangotango.Rooms.Application\Orangotango.Rooms.Application.csproj" />
 		<ProjectReference Include="..\Orangotango.Rooms.Domain\Orangotango.Rooms.Domain.csproj" />
 		<ProjectReference Include="..\Orangotango.Rooms.Infra\Orangotango.Rooms.Infra.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="newrelic.config">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 </Project>

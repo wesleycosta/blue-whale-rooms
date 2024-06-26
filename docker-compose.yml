@@ -7,7 +7,7 @@ services:
       - 9200:9200
       - 9300:9300
     networks:
-      - pixel-hotel
+      - orangotango
     environment:
       discovery.type: single-node
       ES_JAVA_OPTS: "-Xms1g -Xmx1g"
@@ -17,19 +17,21 @@ services:
     ports:
       - "5601:5601"
     networks:
-      - pixel-hotel
+      - orangotango
     depends_on:
       - elasticsearch
 
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2019-latest
     ports:
-      - "1433:1433"
+      - "1432:1433"
     volumes:
       - mssql2019:/var/opt/mssql
     environment:
       SA_PASSWORD: "sqlserver@123"
       ACCEPT_EULA: "Y"
+    networks:
+      - orangotango
 
   rabbitmq:
     image: rabbitmq:3-management
@@ -37,12 +39,30 @@ services:
       - "5672:5672"
       - "15672:15672"
     networks:
-      - pixel-hotel
+      - orangotango
+
+  orangotango-rooms:
+    depends_on:
+      - elasticsearch
+      - sqlserver
+      - rabbitmq
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    networks:
+      - orangotango
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=rooms;User Id=sa;Password=sqlserver@123;TrustServerCertificate=True;
+      - Elasticsearch__Uri=http://elasticsearch:9200
+      - RabbitMQ__ConnectionString=amqp://guest:guest@rabbitmq:5672
+      - NEW_RELIC_LICENSE_KEY=b5b7112c74a0f2bc3598eebeb2daad93FFFFNRAL
 
 volumes:
   mssql2019:
     driver: local
 
 networks:
-  pixel-hotel:
+  orangotango:
     driver: bridge
