@@ -3,8 +3,6 @@ name: .NET
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build-and-tests:
@@ -50,7 +48,7 @@ jobs:
 
       - name: Docker Build
         run: |
-          IMAGE_TAG=wesleycosta/power-up-challenge:$(date +'%Y%m%d%H%M%S')
+          IMAGE_TAG=wesleycosta/orangotango-rooms:$(date +'%Y%m%d%H%M%S')
           docker build . --file Dockerfile --tag $IMAGE_TAG
           echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
 
